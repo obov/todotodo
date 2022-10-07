@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { completeTodo, deleteTodo } from "../store";
+import { completeTodo, deleteTodo, TYPE } from "../store";
 
 const Btn = ({ id, type }) => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const Btn = ({ id, type }) => {
     dispatch(deleteTodo(id));
   };
 
-  return type === "delete" ? (
+  return type === TYPE.DELETE ? (
     <Button type={type} onClick={handleClickDelete}>
       삭제하기
     </Button>
@@ -33,5 +33,5 @@ const Button = styled.button`
   height: 40px;
   width: 50%;
   background-color: #fff;
-  border: 2px solid ${({ type }) => (type === "delete" ? "red" : "green")};
+  border: 2px solid ${({ type }) => (type === TYPE.DELETE ? "red" : "green")};
 `;

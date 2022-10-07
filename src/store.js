@@ -1,23 +1,23 @@
 import { createStore } from "redux";
 
-const ADD = "ADD";
-const DELETE = "DELETE";
-const COMPLETE = "COMPLETE";
+export const TYPE = {
+  ADD: "ADD",
+  DELETE: "DELETE",
+  COMPLETE: "COMPLETE",
+};
 
-export const addTodo = (title, content) => ({ type: ADD, title, content });
-export const deleteTodo = (id) => ({ type: DELETE, id });
-export const completeTodo = (id, isComplete) => ({ type: COMPLETE, id, isComplete });
+export const addTodo = (title, content) => ({ type: TYPE.ADD, title, content });
+export const deleteTodo = (id) => ({ type: TYPE.DELETE, id });
+export const completeTodo = (id, isComplete) => ({ type: TYPE.COMPLETE, id, isComplete });
 
-const reducer = (
-  state = [
-    { id: 333, title: "세계정복", content: "쉬움", isComplete: true },
-    { id: 222, title: "리엑트 공부", content: "어려움", isComplete: false },
-  ],
-  { type, ...todo }
-) => {
+const initTodos = [
+  { id: 333, title: "세계정복", content: "쉬움", isComplete: true },
+  { id: 222, title: "리엑트 공부", content: "어려움", isComplete: false },
+];
+const reducer = (state = initTodos, { type, ...todo }) => {
   const { id, title, content, isComplete } = todo;
   switch (type) {
-    case ADD:
+    case TYPE.ADD:
       return [
         ...state,
         {
@@ -27,9 +27,9 @@ const reducer = (
           isComplete: false,
         },
       ];
-    case DELETE:
+    case TYPE.DELETE:
       return state.filter((todo) => todo.id !== id);
-    case COMPLETE:
+    case TYPE.COMPLETE:
       const index = state.findIndex((e) => e.id === id);
       return state
         .slice(0, index)

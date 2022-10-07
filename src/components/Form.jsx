@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { addTodo } from "../store";
 
-const Form = ({ setTodos }) => {
+const Form = () => {
   const initValue = {
     title: "",
     content: "",
