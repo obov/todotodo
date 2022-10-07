@@ -1,4 +1,4 @@
-import Todo from "../todo/Todo";
+import Todo from "./Todo";
 import styled from "styled-components";
 const List = ({ todos, setTodos }) => {
   return (

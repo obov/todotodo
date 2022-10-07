@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 const Btn = ({ text, ...rest }) => <Button {...rest}>{text}</Button>;
 const Todo = ({ todo: { id, title, content, isComplete }, setTodos }) => {
@@ -15,6 +16,9 @@ const Todo = ({ todo: { id, title, content, isComplete }, setTodos }) => {
   };
   return (
     <TodoContainter>
+      <Link to={"/" + id} state={{ id, title, content }}>
+        상세보기
+      </Link>
       <div>
         <H2>{title}</H2>
         <div>{content}</div>

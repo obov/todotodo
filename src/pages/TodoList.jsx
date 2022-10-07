@@ -1,7 +1,7 @@
-import Layout from "../components/layout/Layout";
-import Header from "../components/header/Header";
-import Form from "../components/form/Form";
-import List from "../components/list/List";
+import Layout from "../components/layout/ListLayout";
+import Header from "../components/Header";
+import Form from "../components/Form";
+import List from "../components/List";
 import { useState } from "react";
 
 const TodoList = () => {
