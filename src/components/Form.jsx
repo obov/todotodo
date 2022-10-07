@@ -1,17 +1,22 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
-// import "./style.css";
+import { addTodo } from "../store";
+
 const Form = ({ setTodos }) => {
   const initValue = {
     title: "",
     content: "",
     isComplete: false,
   };
+  const dispatch = useDispatch();
   const [newTodo, setNewTodo] = useState(initValue);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (newTodo.title && newTodo.content) {
-      setTodos((cur) => cur.concat({ ...newTodo, id: new Date().getTime() }));
+    const { title, content } = newTodo;
+    if (title && content) {
+      dispatch(addTodo(title, content));
       setNewTodo(() => initValue);
     }
   };
@@ -26,10 +31,10 @@ const Form = ({ setTodos }) => {
       <InputGroup>
         <FormLabel>제목</FormLabel>
         <Input type="text" name="title" onChange={handleChangeTitle} value={newTodo.title} />
-        <FormLabel className="form-label">내용</FormLabel>
+        <FormLabel>내용</FormLabel>
         <Input type="text" name="body" onChange={handleChangeContent} value={newTodo.content} />
       </InputGroup>
-      <Btn className="add-button">추가하기</Btn>
+      <Btn>추가하기</Btn>
     </TodoForm>
   );
 };

@@ -1,6 +1,9 @@
 import Todo from "./Todo";
 import styled from "styled-components";
-const List = ({ todos, setTodos }) => {
+import { useSelector } from "react-redux";
+const List = () => {
+  const todos = useSelector((state) => state);
+
   return (
     <ListContainer>
       <H2>Working.. 🔥</H2>
@@ -8,7 +11,7 @@ const List = ({ todos, setTodos }) => {
         {todos
           .filter(({ isComplete }) => !isComplete)
           .map((todo) => (
-            <Todo key={todo.id} todo={todo} setTodos={setTodos} />
+            <Todo key={todo.id} todo={todo} />
           ))}
       </ListWrapper>
       <H2>Done..! 🎉</H2>
@@ -16,7 +19,7 @@ const List = ({ todos, setTodos }) => {
         {todos
           .filter(({ isComplete }) => isComplete)
           .map((todo) => (
-            <Todo key={todo.id} todo={todo} setTodos={setTodos} />
+            <Todo key={todo.id} todo={todo} />
           ))}
       </ListWrapper>
     </ListContainer>

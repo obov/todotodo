@@ -1,19 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-const Btn = ({ text, ...rest }) => <Button {...rest}>{text}</Button>;
-const Todo = ({ todo: { id, title, content, isComplete }, setTodos }) => {
-  const handleClickComplete = () => {
-    setTodos((cur) => {
-      const index = cur.findIndex((e) => e.id === id);
-      return cur
-        .slice(0, index)
-        .concat({ ...cur[index], isComplete: !isComplete })
-        .concat(cur.slice(index + 1));
-    });
-  };
-  const handleClickDelete = () => {
-    setTodos((cur) => cur.filter((e) => e.id !== id));
-  };
+import Btn from "./Btn";
+
+const Todo = ({ todo }) => {
+  const { id, title, content } = todo;
+
   return (
     <TodoContainter>
       <Link to={"/" + id} state={{ id, title, content }}>
@@ -24,8 +15,8 @@ const Todo = ({ todo: { id, title, content, isComplete }, setTodos }) => {
         <div>{content}</div>
       </div>
       <Btns>
-        <Btn type="todo-delete-button" text="삭제하기" onClick={handleClickDelete} />
-        <Btn type="todo-complete-button" text={isComplete ? "취소" : "완료"} onClick={handleClickComplete} />
+        <Btn type="delete" id={id} />
+        <Btn type="complete" id={id} />
       </Btns>
     </TodoContainter>
   );
@@ -33,15 +24,6 @@ const Todo = ({ todo: { id, title, content, isComplete }, setTodos }) => {
 
 export default Todo;
 
-const Button = styled.button`
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  height: 40px;
-  width: 50%;
-  background-color: #fff;
-  border: 2px solid ${({ type }) => (type === "todo-delete-button" ? "red" : "green")};
-`;
 const H2 = styled.h2`
   display: block;
   font-size: 1.5em;
