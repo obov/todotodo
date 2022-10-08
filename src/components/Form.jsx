@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { addTodo } from "../store";
+import { add } from "../store";
 
 const Form = () => {
   const initValue = {
@@ -16,7 +16,7 @@ const Form = () => {
     e.preventDefault();
     const { title, content } = newTodo;
     if (title && content) {
-      dispatch(addTodo(title, content));
+      dispatch(add({ title, content }));
       setNewTodo(() => initValue);
     }
   };

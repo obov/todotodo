@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { complete, remove } from "../store";
 import Btn from "./Btn";
-import { TYPE } from "../store";
 
 const Todo = ({ todo }) => {
   const { id, title, content } = todo;
@@ -16,8 +16,8 @@ const Todo = ({ todo }) => {
         <div>{content}</div>
       </div>
       <Btns>
-        <Btn type={TYPE.DELETE} id={id} />
-        <Btn type={TYPE.COMPLETE} id={id} />
+        <Btn type={"delete"} id={id} />
+        <Btn type={"complete"} id={id} />
       </Btns>
     </TodoContainter>
   );
